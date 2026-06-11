@@ -563,6 +563,16 @@ img {
       <h3>🛒 Mi Carrito</h3>
       <div id="cart-items"></div>
       <div class="cart-total">Total: COP$<span id="cart-total">0</span></div>
+      <div style="margin-top:15px;">
+  <label><strong>Método de pago:</strong></label>
+  <select id="payment-method" style="width:100%; padding:8px; margin-top:5px;">
+    <option>Tarjeta de Crédito</option>
+    <option>Tarjeta Débito</option>
+    <option>Nequi</option>
+    <option>Daviplata</option>
+    <option>PSE</option>
+  </select>
+</div>
       <div class="cart-actions">
         <button class="btn" id="checkout">Pagar</button>
         <button class="btn secondary" id="empty-cart">Vaciar</button>
@@ -821,20 +831,15 @@ id:3,
       state.filters.materials = checked;
       renderProducts();
     });document.getElementById('sort').onchange = renderProducts;
-    document.getElementById('open-cart').onclick = () => {
-  showTab('productos');
-  setTimeout(() => {
-    document.getElementById('cart').scrollIntoView({
-      behavior:'smooth'
-    });
-  }, 100);
-};
-    document.getElementById('empty-cart').onclick = ()=>{ if(confirm('¿Vaciar el carrito?')) emptyCart(); };
     document.getElementById('checkout').onclick = ()=>{
-      if(state.cart.length===0){ alert('Tu carrito está vacío'); return; }
-      alert('¡Compra realizada exitosamente! Gracias por confiar en OLYMPIC SPORT');
-      emptyCart();
-    }; renderProducts(); renderCart(); updateCartCount();
+  if(state.cart.length===0){
+    alert('Tu carrito está vacío');
+    return;
+  }
+  const metodo = document.getElementById('payment-method').value;
+  alert('Pago realizado con ' + metodo + '. ¡Gracias por confiar en OLYMPIC SPORT!');
+  emptyCart();
+};    }; renderProducts(); renderCart(); updateCartCount();
    function showTab(tabId) {
   document.querySelectorAll('.tab-content').forEach(tab => {
     tab.style.display = 'none';
