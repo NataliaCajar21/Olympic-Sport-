@@ -821,7 +821,14 @@ id:3,
       state.filters.materials = checked;
       renderProducts();
     });document.getElementById('sort').onchange = renderProducts;
-    document.getElementById('open-cart').onclick = ()=>document.getElementById('cart').scrollIntoView({behavior:'smooth'});
+    document.getElementById('open-cart').onclick = () => {
+  showTab('productos');
+  setTimeout(() => {
+    document.getElementById('cart').scrollIntoView({
+      behavior:'smooth'
+    });
+  }, 100);
+};
     document.getElementById('empty-cart').onclick = ()=>{ if(confirm('¿Vaciar el carrito?')) emptyCart(); };
     document.getElementById('checkout').onclick = ()=>{
       if(state.cart.length===0){ alert('Tu carrito está vacío'); return; }
