@@ -839,7 +839,10 @@ id:3,
   const metodo = document.getElementById('payment-method').value;
   alert('Pago realizado con ' + metodo + '. ¡Gracias por confiar en OLYMPIC SPORT!');
   emptyCart();
-};    }; renderProducts(); renderCart(); updateCartCount();
+};
+renderProducts();
+renderCart();
+updateCartCount();
    function showTab(tabId) {
   document.querySelectorAll('.tab-content').forEach(tab => {
     tab.style.display = 'none';
